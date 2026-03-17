@@ -1,5 +1,8 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 
 export const requestIdInterceptor: HttpInterceptorFn = (req, next) => {
-  return next(req);
+  const requestId = crypto.randomUUID();
+  return next(req.clone({
+    setHeaders: {'x-request-id': requestId},
+  }));
 };
