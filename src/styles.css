@@ -1,3 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+
+:root {
+	--color-bg: #f8fafc;
+	--color-surface: #ffffff;
+	--color-text: #0f172a;
+	--color-muted: #475569;
+	--radius-md: 10px;
+	--radius-lg: 16px;
+	--space-sm: 8px;
+	--space-md: 16px;
+	--space-lg: 24px;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	color: var(--color-text);
+	background: var(--color-bg);
+}
+
+:where(button, input, select, textarea):focus-visible {
+	outline: 2px solid #2563eb;
+	outline-offset: 2px;
+}
