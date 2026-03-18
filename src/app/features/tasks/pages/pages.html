@@ -1,1 +1,40 @@
-<p>pages works!</p>
+<main class="page-shell">
+	<div class="page-content">
+		<app-task-header
+			title="TASK BOARD"
+			phrase="What are your plans for today?"
+			[count]="facade.totalTaskCount()"
+			[enableRuntimeModeOverride]="enableRuntimeModeOverride"
+			[dataMode]="facade.dataMode()"
+			(modeChanged)="facade.setDataMode($event)" />
+
+		<section class="create-bar">
+			<app-input
+				[value]="form.controls.title.value"
+				placeholder="Write your task here and press Create"
+				(changed)="form.controls.title.setValue($event)"
+				(enterPressed)="createTask()" />
+
+			<app-datetime-input
+				[value]="form.controls.dueDate.value"
+				(changed)="form.controls.dueDate.setValue($event)" />
+
+			<app-button (clicked)="createTask()">Create</app-button>
+		</section>
+
+		@if (facade.error(); as error) {
+			<p class="error" role="alert">{{ error.message }} ({{ error.code }})</p>
+		}
+
+		@if (facade.loading()) {
+			<p class="loading">Synchronizing workspace...</p>
+		} @else {
+			<app-kanban-board
+				[todoTasks]="facade.todoTasks()"
+				[inProgressTasks]="facade.inProgressTasks()"
+				[doneTasks]="facade.doneTasks()"
+				(moved)="facade.moveTask($event.taskId, $event.direction)"
+				(deleted)="facade.deleteTask($event)" />
+		}
+	</div>
+</main>
