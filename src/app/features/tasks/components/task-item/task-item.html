@@ -1,1 +1,26 @@
-<p>task-item works!</p>
+<article class="task-card" role="article" aria-label="Task item">
+	@if (prevStatus(); as prev) {
+		<app-vertical-nav-button
+			direction="left"
+			[label]="'Move to ' + prev"
+			(clicked)="moved.emit('backward')" />
+	}
+
+	<section class="content" aria-label="Task details">
+		<div class="title-row">
+			<h4>{{ task().title }}</h4>
+			<app-status-badge [status]="task().status" />
+		</div>
+		<p class="due-date">{{ formatDueDate(task().dueDate) }}</p>
+		<button type="button" aria-label="Delete task" title="Delete task" (click)="deleted.emit()">
+			Delete
+		</button>
+	</section>
+
+	@if (nextStatus(); as next) {
+		<app-vertical-nav-button
+			direction="right"
+			[label]="'Move to ' + next"
+			(clicked)="moved.emit('forward')" />
+	}
+</article>
