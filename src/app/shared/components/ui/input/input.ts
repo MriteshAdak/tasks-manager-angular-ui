@@ -3,13 +3,14 @@ import { Component, ChangeDetectionStrategy, input, output } from '@angular/core
 @Component({
   selector: 'app-input',
   imports: [],
-  template: ` 
-    <input 
-      [value]="value()" 
-      [placeholder]="placeholder()" 
-      [disabled]="disabled()" 
-      (input)="propogateChange($event)" 
-    /> 
+  template: `
+    <input
+      [value]="value()"
+      [placeholder]="placeholder()"
+      [disabled]="disabled()"
+      (input)="propagateChange($event)"
+      (keydown.enter)="enterPressed.emit()"
+    />
   `,
   styles: `
     input {
@@ -26,14 +27,14 @@ import { Component, ChangeDetectionStrategy, input, output } from '@angular/core
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Input {
-  readonly value = input<string>("");
-  readonly placeholder = input<string>("");
+  readonly value = input<string>('');
+  readonly placeholder = input<string>('');
   readonly disabled = input<boolean>(false);
   readonly changed = output<string>();
-  // readonly enterPressed = output<string>();
+  readonly enterPressed = output<void>();
 
-  propogateChange(event: Event) {
-    const inputValue = (event.target as HTMLInputElement).value ?? "";
+  propagateChange(event: Event): void {
+    const inputValue = (event.target as HTMLInputElement).value ?? '';
     this.changed.emit(inputValue);
   }
 }
