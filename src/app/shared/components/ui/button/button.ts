@@ -1,16 +1,17 @@
-import { Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-button',
   imports: [],
-  template: ` 
-    <button 
+  template: `
+    <button
       [type]="type()"
       [disabled]="disabled()"
       [class]="className()"
       (click)="clicked.emit()">
       <ng-content></ng-content>
-    </button> `,
+    </button>
+  `,
   styles: `
     button {
       height: 46px;
@@ -28,6 +29,7 @@ import { Component, input, output } from '@angular/core';
       cursor: not-allowed;
     }
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Button {
   readonly type = input<'button' | 'submit' | 'reset'>('button');
