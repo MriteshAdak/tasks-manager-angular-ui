@@ -10,8 +10,8 @@ import { Component, ChangeDetectionStrategy, input, output } from '@angular/core
   [disabled]="disabled()" 
   (keydown.enter)="enterPressed.emit((
     $any($event.target).value ?? ''
-    ).toString())"
-  /> `,
+    ).toString())" /> 
+  `,
   styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
