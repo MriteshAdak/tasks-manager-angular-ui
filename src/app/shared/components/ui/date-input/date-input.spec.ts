@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DatetimeInput } from './datetime-input';
+import { DatetimeInput } from './date-input';
 
 describe('DatetimeInput', () => {
   let component: DatetimeInput;

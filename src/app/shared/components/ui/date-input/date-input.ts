@@ -36,11 +36,11 @@ import { Component, ChangeDetectionStrategy, input, output } from '@angular/core
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DatetimeInput {
-  readonly value = input<string>("");
-  readonly valueChanged = output<string>();
+  readonly value = input<string>('');
+  readonly changed = output<string>();
 
-  onInput(event: Event) {
-    const inputValue = (event.target as HTMLInputElement).value ?? "";
-    this.valueChanged.emit(inputValue);
+  onInput(event: Event): void {
+    const inputValue = (event.target as HTMLInputElement).value ?? '';
+    this.changed.emit(inputValue);
   }
 }
