@@ -1,1 +1,31 @@
-<p>kanban-board works!</p>
+<section class="board-grid">
+	<article class="column" data-column="todo">
+		<h3>To Do</h3>
+		@for (task of todoTasks(); track task.id) {
+			<app-task-item
+				[task]="task"
+				(moved)="onMoved(task.id, $event)"
+				(deleted)="onDeleted(task.id)" />
+		}
+	</article>
+
+	<article class="column" data-column="in_progress">
+		<h3>In Progress</h3>
+		@for (task of inProgressTasks(); track task.id) {
+			<app-task-item
+				[task]="task"
+				(moved)="onMoved(task.id, $event)"
+				(deleted)="onDeleted(task.id)" />
+		}
+	</article>
+
+	<article class="column" data-column="done">
+		<h3>Done</h3>
+		@for (task of doneTasks(); track task.id) {
+			<app-task-item
+				[task]="task"
+				(moved)="onMoved(task.id, $event)"
+				(deleted)="onDeleted(task.id)" />
+		}
+	</article>
+</section>
