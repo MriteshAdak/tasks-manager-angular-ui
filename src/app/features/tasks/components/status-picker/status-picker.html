@@ -1,1 +1,4 @@
-<p>status-picker works!</p>
+<label>
+	Status
+	<app-select [options]="options" [value]="value()" (changed)="onChanged($event)" />
+</label>

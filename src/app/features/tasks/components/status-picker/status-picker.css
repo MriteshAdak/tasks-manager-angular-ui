@@ -1,0 +1,10 @@
+label {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	font-size: 10px;
+	font-weight: 800;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: #94a3b8;
+}
