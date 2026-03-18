@@ -1,1 +1,27 @@
-<p>task-header works!</p>
+<header class="header">
+	<div>
+		<h1>{{ title() }}</h1>
+		<p>{{ phrase() }}</p>
+	</div>
+
+	<div class="metrics">
+		<span>Total {{ count() }}</span>
+	</div>
+</header>
+
+@if (enableRuntimeModeOverride()) {
+	<section class="mode-toggle" aria-label="Data mode">
+		<button
+			type="button"
+			[class.active]="dataMode() === 'api'"
+			(click)="setMode('api')">
+			API
+		</button>
+		<button
+			type="button"
+			[class.active]="dataMode() === 'local'"
+			(click)="setMode('local')">
+			Local
+		</button>
+	</section>
+}
